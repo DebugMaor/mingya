@@ -7,8 +7,8 @@ from datetime import date
 
 # --- 1. 配置区域 ---
 # 企业微信机器人 Webhook URL
-#WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=5e02e1c5-9b8b-4af5-acd6-04c0f307794c' #MsgBot部门群
-WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6dd77fa6-0998-4a46-9c70-c8fab91c72b2' #Bot
+WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=5e02e1c5-9b8b-4af5-acd6-04c0f307794c' #MsgBot部门群
+#WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6dd77fa6-0998-4a46-9c70-c8fab91c72b2' #Bot
 
 # API 请求参数
 API_URL = 'https://sales.mingya.com.cn/exercise/back/manage/list?code='
