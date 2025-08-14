@@ -22,7 +22,7 @@ COOKIES = {
 }
 
 # 数据筛选的起始ID (只统计 exerciseId 大于此值的活动)
-CUTOFF_ID = 5581
+CUTOFF_ID = 5659
 
 # 分公司到大区的映射关系
 ERP_DICT = {
