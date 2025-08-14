@@ -7,7 +7,8 @@ from datetime import date
 
 # --- 1. 配置区域 ---
 # 企业微信机器人 Webhook URL
-WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6dd77fa6-0998-4a46-9c70-c8fab91c72b2'
+#WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=5e02e1c5-9b8b-4af5-acd6-04c0f307794c' #MsgBot部门群
+WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6dd77fa6-0998-4a46-9c70-c8fab91c72b2' #Bot
 
 # API 请求参数
 API_URL = 'https://sales.mingya.com.cn/exercise/back/manage/list?code='
@@ -112,14 +113,18 @@ def send_wechat_notification(summary):
     total_count = sum(len(ids) for ids in summary.values())
 
     content_parts = [
-        f"**【无标签活动巡检日报】({today_str})**",
-        f"> 范围：exerciseId > {CUTOFF_ID}，无标签活动总计 <font color='warning'>{total_count}</font> 个，详情如下："
+        f"**【活动标签设置提醒】({today_str})**",
+        f"> 无标签活动总计 <font color='warning'>{total_count}</font> 个，详情如下："
     ]
 
-    for region, ids in summary.items():
-        ids_str = '、'.join(ids)
-        line = f"- **{region}** 总计：<font color='comment'>{len(ids)}</font> 个 ({ids_str})"
-        content_parts.append(line)
+    # 按指定顺序输出区域
+    region_order = ["北区", "东区", "南区", "西区"]
+    for region in region_order:
+        if region in summary:
+            ids = summary[region]
+            ids_str = '、'.join(ids)
+            line = f"- **{region}** 总计：<font color='comment'>{len(ids)}</font> 个 ({ids_str})"
+            content_parts.append(line)
 
     final_content = "\n\n".join(content_parts)
     
@@ -162,15 +167,15 @@ def save_to_excel(activities):
 
 def main():
     """主执行函数"""
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(script_dir)
+    #script_dir = os.path.dirname(os.path.abspath(__file__))
+    #os.chdir(script_dir)
 
     activities = fetch_all_activities()
     
     if activities is not None:
         summary = process_and_summarize(activities, ERP_DICT, CUTOFF_ID)
         send_wechat_notification(summary)
-        save_to_excel(activities)
+        #save_to_excel(activities)
 
 if __name__ == '__main__':
     main()
