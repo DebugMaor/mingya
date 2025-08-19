@@ -18,7 +18,7 @@ HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
 }
 COOKIES = {
-    'auth_token': 'MY_*0IfWYS-N4cbyPL3PwUUH7s_4ItMmB8koAV8p8N-rQ5aZr3ooRqEiR-kSraDPggCUN3cq_VJ4-ZAVRfh5lAnJOrWTydzq7h0QBvX-2MqA4-NA!',
+    'auth_token': 'MY_*0IfWYS-N4cbyPL3PwUUH7s_4ItMmB8koAV8p8N-rQ5aZr3ooRqEiR-kSraDPggCUNq7YdiCGUenK6ejEDlTNiLLg96F-Rcs9jBPUkkwzJsr8!',
 }
 
 # 数据筛选的起始ID (只统计 exerciseId 大于此值的活动)
