@@ -83,7 +83,7 @@ def fetch_all_activities():
 
 def process_and_summarize(activities, erp_mapping, cutoff_id):
     """根据ID和tag筛选并按大区汇总"""
-    print(f"正在筛选和汇总数据 (只统计 exerciseId > {cutoff_id} 的活动，排除测试活动)...")
+    print(f"正在筛选和汇总数据 (只统计 exerciseId > {cutoff_id} 且tag为空的活动，排除测试活动)...")
     region_summary = {}
 
     for activity in activities:
@@ -94,8 +94,9 @@ def process_and_summarize(activities, erp_mapping, cutoff_id):
         if "测试" in exercise_name:
             continue
 
-        # 核心筛选逻辑：tag为null且exerciseId大于指定值
-        if activity.get('tag') is None and exercise_id > cutoff_id:
+        # 核心筛选逻辑：tag为null或空字符串且exerciseId大于指定值
+        tag = activity.get('tag')
+        if (tag is None or tag == "") and exercise_id > cutoff_id:
             com_name = activity.get('workComName')
             
             if com_name == "总部":
@@ -117,7 +118,7 @@ def process_and_summarize(activities, erp_mapping, cutoff_id):
 def send_wechat_notification(summary):
     """发送企业微信通知"""
     if not summary:
-        print(f"在 exerciseId > {CUTOFF_ID} 的活动中没有找到任何tag为null的项，无需发送通知。")
+        print(f"在 exerciseId > {CUTOFF_ID} 的活动中没有找到任何tag为空的项，无需发送通知。")
         return
 
     print("正在构造并发送企业微信通知...")
